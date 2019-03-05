@@ -1,4 +1,7 @@
 import os
+import logging
+
+logging.debug("config")
 
 LOG_DIR = 'logs'
 logging_config = {
@@ -14,21 +17,30 @@ logging_config = {
             'class': 'logging.StreamHandler',
             'level': 'INFO',
         },
-        'file': {
+        'debug_file': {
             'class': 'logging.FileHandler',
-            'filename': os.path.join(LOG_DIR, 'mplog.log'),
+            'filename': os.path.join(LOG_DIR, 'debug.log'),
             'mode': 'w',
             'formatter': 'detailed',
+            'level': 'DEBUG'
         },
-        'foofile': {
+        'info_file': {
             'class': 'logging.FileHandler',
-            'filename': os.path.join(LOG_DIR, 'mplog-foo.log'),
+            'filename': os.path.join(LOG_DIR, 'info.log'),
             'mode': 'w',
             'formatter': 'detailed',
+            'level': 'INFO'
         },
-        'errors': {
+        'warn_file': {
             'class': 'logging.FileHandler',
-            'filename': os.path.join(LOG_DIR, 'mplog-errors.log'),
+            'filename': os.path.join(LOG_DIR, 'warning.log'),
+            'mode': 'w',
+            'formatter': 'detailed',
+            'level': 'WARNING'
+        },
+        'error_file': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOG_DIR, 'errors.log'),
             'mode': 'w',
             'level': 'ERROR',
             'formatter': 'detailed',
@@ -36,11 +48,11 @@ logging_config = {
     },
     'loggers': {
         'foo': {
-            'handlers': ['foofile']
+            'handlers': ["debug_file", "info_file", "warn_file", "error_file"]
         }
     },
     'root': {
         'level': 'DEBUG',
-        'handlers': ['console', 'file', 'errors']
+        'handlers': ['console', 'debug_file', 'errors']
     },
 }
