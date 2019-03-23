@@ -6,3 +6,6 @@ venv/
 
 # compiled code
 *.pyc
+
+#jupyter
+.ipynb_checkpoints/
